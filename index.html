@@ -3,16 +3,18 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <title>literally twittler</title>
+    <link rel="stylesheet" href="bootstrap.css"  type="text/css"/>
   </head>
   <body>
     <script>
 
       $(document).ready(function(event){
-        var $body = $('body');
+        var $content = $('.content');
 				var $button = $('<input type="button" name="submit" value="Show new tweets">');
 				var $tweets = $('<div class="tweets"></div>');
-				$body.html($tweets);
-				$body.append($button);
+				$content.html($tweets);
+				$content.append($button);
 
         var index = streams.home.length - 1;
         while(index > 0){
@@ -86,5 +88,12 @@
       });
 
     </script>
+
+    <div class="container">
+    	<div class="header">
+    		<h1>literally twittler</h1>
+    	</div>
+    	<div class="content"></div>
+    </div>
   </body>
 </html>
