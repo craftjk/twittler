@@ -13,29 +13,76 @@
 				var $tweets = $('<div class="tweets"></div>');
 				$body.html($tweets);
 				$body.append($button);
-				
+
         var index = streams.home.length - 1;
         while(index > 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
+          var $tweet = $('<div class="tweet"></div>');
+          var $user = $('<span class="user"></span>');
+	        $user.text('@' + tweet.user);
 					var elapsed = new Date(Date.now() - tweet.created_at);
 					var timestamp = tweet.created_at;
-          $tweet.text(timestamp + ' @' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($tweets);
+          $tweet.append(timestamp + ' ');
+					$tweet.append($user);
+					$tweet.append(': ' + tweet.message);
+	        $tweet.appendTo($tweets);
           index -= 1;
         }
-				
+
 				$button.click(function(event) {
 					$tweets.html('');
-	        for(var i = streams.home.length - 1; i > streams.home.length - 11; i--){
+	        for (var i = streams.home.length - 1 ; i > streams.home.length - 11 ; i--) {
 	          var tweet = streams.home[i];
-	          var $tweet = $('<div></div>');
+	          var $tweet = $('<div class="tweet"></div>');
+	          var $user = $('<span class="user"></span>');
+	          $user.text('@' + tweet.user);
 						var elapsed = new Date(Date.now() - tweet.created_at);
 						var timestamp = tweet.created_at;
-	          $tweet.text(timestamp + ' @' + tweet.user + ': ' + tweet.message);
+						$tweet.append(timestamp + ' ');
+						$tweet.append($user);
+						$tweet.append(': ' + tweet.message);
 	          $tweet.appendTo($tweets);
 	        }
+	        $('.tweet .user').click(function(event) {
+	        	var clickedName = this.innerHTML.slice(1);
+	        	$tweets.html('');
+	        	for (var i = streams.home.length - 1; i > 0; i--) {
+	        		var tweet = streams.home[i];
+	        		var $tweet = $('<div class="tweet"></div>');
+	        		if (tweet.user === clickedName) {
+	        			var $tweet = $('<div class="tweet"></div>');
+	        			var $user = $('<span class="user"></span>');
+		            $user.text('@' + tweet.user);
+			  				var elapsed = new Date(Date.now() - tweet.created_at);
+				  			var timestamp = tweet.created_at;
+					  		$tweet.append(timestamp + ' ');
+						  	$tweet.append($user);
+							  $tweet.append(': ' + tweet.message);
+		            $tweet.appendTo($tweets);
+	        		}
+	        	}
+	        });
 				});
+
+        $('.tweet .user').click(function(event) {
+        	var clickedName = this.innerHTML.slice(1);
+        	$tweets.html('');
+        	for (var i = streams.home.length - 1; i > 0; i--) {
+        		var tweet = streams.home[i];
+        		var $tweet = $('<div class="tweet"></div>');
+        		if (tweet.user === clickedName) {
+        			var $tweet = $('<div class="tweet"></div>');
+        			var $user = $('<span class="user"></span>');
+	            $user.text('@' + tweet.user);
+		  				var elapsed = new Date(Date.now() - tweet.created_at);
+			  			var timestamp = tweet.created_at;
+				  		$tweet.append(timestamp + ' ');
+					  	$tweet.append($user);
+						  $tweet.append(': ' + tweet.message);
+	            $tweet.appendTo($tweets);
+        		}
+        	}
+        });
       });
 
     </script>
